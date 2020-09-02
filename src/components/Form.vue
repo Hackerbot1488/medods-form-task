@@ -22,6 +22,28 @@
 							placeholder="Фёдорович"
 						/>
 					</div>
+					<div class="group__item">
+						<label>Пол</label>
+						<div class="wrap-radio">
+							<input type="radio" id="male" name="sex" value="male" />
+							<label for="male">Мужской</label>
+						</div>
+						<div class="wrap-radio">
+							<input type="radio" id="female" name="sex" value="female" />
+							<label for="female">Женский</label>
+						</div>
+						<div class="wrap-radio">
+							<input type="radio" id="custom" name="sex" value="custom" />
+							<label for="custom">Микс</label>
+						</div>
+					</div>
+					<div class="group__item">
+						<label for="notifications">SMS - Уведомления</label>
+						<div class="wrap-checkbox">
+							<input type="checkbox" name="notifications" id="notifications" />
+							<label for="notifications">Не получать sms-уведомления</label>
+						</div>
+					</div>
 				</div>
 				<div class="group__column">
 					<div class="group__item">
@@ -248,12 +270,30 @@ export default {
 	flex-direction: column
 	padding-bottom: 30px
 	label
-		font-size: 20px
+		font-size: 22px
+		font-weight: bold
 		margin-left: 10px
 		margin-bottom: 3px
 		width: fit-content
 		display: inline-table
 		position: relative
+	.wrap-radio
+		display: flex
+		align-items: center
+		margin-bottom: 5.6px
+		&:last-child
+			margin-bottom: 0
+		label
+			font-size: 20px
+			font-weight: normal
+			margin-bottom: 0
+	.wrap-checkbox
+		display: flex
+		align-items: center
+		label
+			font-size: 20px
+			font-weight: normal
+			margin-bottom: 0
 .form__input
 	height: 40px
 	border: 2px solid white
