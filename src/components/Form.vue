@@ -213,6 +213,9 @@
 				</div>
 			</div>
 		</section>
+		<div class="wrap-submit-button">
+			<button type="submit" class="submit-button">Создать</button>
+		</div>
 	</form>
 </template>
 
@@ -246,8 +249,12 @@ export default {
 	padding: 20px 100px
 	color: #053461
 	background: #91eae4
-	section
+	section, .wrap-submit-button
 		width: 100%
+	.wrap-submit-button
+		padding: 20px 0px 50px
+		display: flex
+		justify-content: flex-end
 
 .personal-info
 	display: flex
@@ -332,8 +339,23 @@ export default {
 		height: 100px
 		padding: 10px 20px
 		overflow: hidden
+.submit-button
+	background-color: #0f2027
+	color: white
+	cursor: pointer
+	text-align: center
+	padding: 0 50px
+	height: 60px
+	font-size: 20px
+	border: none
+	border-radius: 10px
+	transition: 1s
+	&:hover
+		opacity: 0.7
 @media (max-width: 400px)
 	.form__select_multiple
 		padding: 10px 20px
 		height: auto
+	.form__input
+		width: 320px
 </style>
