@@ -1,7 +1,9 @@
 <template>
 	<div class="success">
-		<img src="@/img/success.gif" alt="Успех!" class="success__img" />
-		<h1 class="success__title">Новый клиент успешно добавлен!</h1>
+		<div class="success__container">
+			<img src="@/img/success.gif" alt="Успех!" class="success__img" />
+			<h1 class="success__title">Новый клиент успешно добавлен!</h1>
+		</div>
 	</div>
 </template>
 <script>
@@ -19,6 +21,9 @@ export default {
   color: #053461
   display: flex
   flex-direction: column
+  &__container
+    display: flex
+    flex-direction: column
   &__title
     font-size: 40px
     font-weight: bold
@@ -30,20 +35,21 @@ export default {
 @media (max-width: 900px)
   .success
     margin: 0 50px
-    /** width: calc(100% - 100px) **/
-    padding: 20px calc((100% - 540px) / 2)
+    width: calc(100% - 100px)
+    padding: 20px 0
+    &__container
+      width: 440px
+      margin: 0 auto
     &__title
       font-size: 30px
       width: 440px
-      margin: auto
 @media (max-width: 600px)
   .success
-    margin: 0 50px
-    /** width: calc(100% - 100px) **/
-    padding: 20px calc((100% - 400px) / 2)
+    width: calc(100% - 100px)
+    &__container
+      width: 300px
     &__title
       font-size: 20px
-      margin: auto
       width: 300px
     &__img
       width: 150px
@@ -51,6 +57,9 @@ export default {
 @media (max-width: 440px)
   .success
     padding: 20px
+    width: calc(100% - 100px)
+    &__container
+      width: 100%
     &__title
       width: auto
 </style>
