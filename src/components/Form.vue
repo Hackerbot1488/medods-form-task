@@ -1,49 +1,68 @@
 <template>
-	<form class="form">
+	<form class="form" @submit.prevent="submitHandler">
 		<section class="personal-info">
 			<h2 class="form__header">Персональные данные</h2>
 			<div class="group">
 				<div class="group__column">
 					<div class="group__item">
 						<label for="name" class="required">Имя</label>
-						<input class="form__input" type="text" name="name" id="name" placeholder="Иван" />
+						<input
+							class="form__input"
+							type="text"
+							v-model.trim="form.name"
+							name="name"
+							id="name"
+							placeholder="Иван"
+						/>
+						<p v-if="$v.form.name.$dirty && !$v.form.name.required" class="error">{{errors.isRequired}}</p>
+						<p v-if="$v.form.name.$dirty && !$v.form.name.isWord" class="error">{{errors.isWord}}</p>
 					</div>
 					<div class="group__item">
 						<label for="surname" class="required">Фамилия</label>
-						<input class="form__input" type="text" name="surname" id="surname" placeholder="Карамазов" />
+						<input
+							class="form__input"
+							type="text"
+							v-model.trim="form.surname"
+							name="surname"
+							id="surname"
+							placeholder="Карамазов"
+						/>
+						<p
+							v-if="$v.form.surname.$dirty && !$v.form.surname.required"
+							class="error"
+						>{{errors.isRequired}}</p>
+						<p v-if="$v.form.surname.$dirty && !$v.form.surname.isWord" class="error">{{errors.isWord}}</p>
 					</div>
 					<div class="group__item">
 						<label for="patronymic">Отчество</label>
 						<input
 							class="form__input"
 							type="text"
+							v-model.trim="form.patronymic"
 							name="patronymic"
 							id="patronymic"
 							placeholder="Фёдорович"
 						/>
+						<p
+							v-if="$v.form.patronymic.$dirty && !$v.form.patronymic.isWord"
+							class="error"
+						>{{errors.isWord}}</p>
 					</div>
 					<div class="group__item">
 						<label>Пол</label>
 						<div class="wrap-radio">
-							<input type="radio" id="male" name="sex" value="male" />
+							<input type="radio" id="male" name="sex" v-model.trim="form.gender" value="male" />
 							<label for="male">Мужской</label>
 						</div>
 						<div class="wrap-radio">
-							<input type="radio" id="female" name="sex" value="female" />
+							<input type="radio" id="female" name="sex" v-model.trim="form.gender" value="female" />
 							<label for="female">Женский</label>
 						</div>
 						<div class="wrap-radio">
-							<input type="radio" id="custom" name="sex" value="custom" />
+							<input type="radio" id="custom" name="sex" v-model.trim="form.gender" value="custom" />
 							<label for="custom">Микс</label>
 						</div>
 					</div>
-					<!-- <div class="group__item">
-						<label for="notifications">SMS - Уведомления</label>
-						<div class="wrap-checkbox">
-							<input type="checkbox" name="notifications" id="notifications" />
-							<label for="notifications">Не получать sms-уведомления</label>
-						</div>
-					</div>-->
 				</div>
 				<div class="group__column">
 					<div class="group__item">
@@ -52,18 +71,37 @@
 							class="form__input"
 							type="date"
 							name="birthday"
+							v-model.trim="form.birthday"
 							id="birthday"
 							placeholder="дд.мм.гггг"
 							maxlength="10"
 						/>
+						<p
+							v-if="$v.form.birthday.$dirty && !$v.form.birthday.required"
+							class="error"
+						>{{errors.isRequired}}</p>
+						<p
+							v-if="$v.form.birthday.$dirty && !$v.form.birthday.isDate"
+							class="error"
+						>{{errors.wrongFormat}}</p>
 					</div>
 					<div class="group__item">
 						<label for="phone" class="required">Номер телефона</label>
-						<input class="form__input" type="tel" maxlength="12" name="phone" id="phone" placeholder="+7" />
+						<input
+							class="form__input"
+							type="tel"
+							maxlength="12"
+							name="phone"
+							v-model.trim="form.phone"
+							id="phone"
+							placeholder="+7"
+						/>
+						<p v-if="$v.form.phone.$dirty && !$v.form.phone.required" class="error">{{errors.isRequired}}</p>
+						<p v-if="$v.form.phone.$dirty && !$v.form.phone.isPhone" class="error">{{errors.wrongFormat}}</p>
 					</div>
 					<div class="group__item">
 						<label for="doctor">Лечащий врач</label>
-						<select class="form__select" name="doctor" id="doctor">
+						<select class="form__select" name="doctor" id="doctor" v-model.trim="form.doctor">
 							<option disabled selected style="display:none">Выберите врача</option>
 							<option value="ivanov">Иванов</option>
 							<option value="zaharov">Захаров</option>
@@ -77,12 +115,17 @@
 							class="form__select form__select_multiple"
 							name="client-group"
 							id="client-group"
+							v-model.trim="form.clientGroup"
 							size="3"
 						>
 							<option value="vip">VIP</option>
 							<option value="problem">Проблемные</option>
 							<option value="oms">ОМС</option>
 						</select>
+						<p
+							v-if="$v.form.clientGroup.$dirty && !$v.form.clientGroup.required"
+							class="error"
+						>{{errors.isRequired}}</p>
 					</div>
 				</div>
 			</div>
@@ -92,7 +135,7 @@
 						<label for="notifications">SMS - Уведомления</label>
 						<div class="wrap-checkbox">
 							<label class="checkbox path">
-								<input type="checkbox" id="notifications" />
+								<input type="checkbox" id="notifications" v-model.trim="form.notifications" />
 								<svg viewBox="0 0 21 21">
 									<path
 										d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"
@@ -116,16 +159,35 @@
 							type="text"
 							name="country"
 							id="country"
+							v-model.trim="form.country"
 							placeholder="Российская империя"
 						/>
+						<p v-if="$v.form.country.$dirty && !$v.form.country.isWord" class="error">{{errors.isWord}}</p>
 					</div>
 					<div class="group__item">
 						<label for="state">Область</label>
-						<input class="form__input" type="text" name="state" id="state" placeholder="Ичкерия" />
+						<input
+							class="form__input"
+							type="text"
+							name="state"
+							id="state"
+							v-model.trim="form.state"
+							placeholder="Ичкерия"
+						/>
+						<p v-if="$v.form.state.$dirty && !$v.form.state.isWord" class="error">{{errors.isWord}}</p>
 					</div>
 					<div class="group__item">
 						<label class="required" for="city">Город</label>
-						<input class="form__input" type="text" name="city" id="city" placeholder="Грозный" />
+						<input
+							class="form__input"
+							type="text"
+							name="city"
+							id="city"
+							v-model.trim="form.city"
+							placeholder="Грозный"
+						/>
+						<p v-if="$v.form.city.$dirty && !$v.form.city.required" class="error">{{errors.isRequired}}</p>
+						<p v-if="$v.form.city.$dirty && !$v.form.city.isWord" class="error">{{errors.isWord}}</p>
 						<!-- <p class="error">Обязательное поле!</p> -->
 					</div>
 				</div>
@@ -137,6 +199,7 @@
 							type="text"
 							name="street"
 							id="street"
+							v-model.trim="form.street"
 							placeholder="Витебский тракт"
 						/>
 					</div>
@@ -148,40 +211,44 @@
 							name="postcode"
 							id="postcode"
 							maxlength="6"
+							v-model.trim="form.postCode"
 							placeholder="777777"
 						/>
+						<p
+							v-if="$v.form.postCode.$dirty && !$v.form.postCode.isNumber"
+							class="error"
+						>{{errors.isNumber}}</p>
 					</div>
 					<div class="group__item">
 						<label for="building">Дом</label>
-						<input class="form__input" type="text" name="building" id="building" placeholder="14б" />
+						<input
+							class="form__input"
+							type="text"
+							name="building"
+							v-model.trim="form.building"
+							id="building"
+							placeholder="14б"
+						/>
 					</div>
 				</div>
 			</div>
 		</section>
 		<section class="documents">
 			<h2 class="form__header">Документы</h2>
-			<!-- <div class="group">
-				<div class="group__column">
-					<div class="group__item">
-						<label for="passport">Тип документа</label>
-						<select class="form__select" name="passport" id="passport">
-							<option value="person-doc" selected>Паспорт</option>
-							<option value="birth-doc">Свидетельство о рождении</option>
-							<option value="driver-doc">Водительское удостоверение</option>
-						</select>
-					</div>
-				</div>
-			</div>-->
 			<div class="group">
 				<div class="group__column">
 					<div class="group__item">
 						<label for="passport" class="required">Тип документа</label>
-						<select class="form__select" name="passport" id="passport">
+						<select class="form__select" name="passport" id="passport" v-model.trim="form.document">
 							<option disabled selected style="display:none">Выберите тип документа</option>
 							<option value="person-doc">Паспорт</option>
 							<option value="birth-doc">Свидетельство о рождении</option>
 							<option value="driver-doc">Водительское удостоверение</option>
 						</select>
+						<p
+							v-if="$v.form.document.$dirty && !$v.form.document.required"
+							class="error"
+						>{{errors.isRequired}}</p>
 					</div>
 					<div class="group__item">
 						<label for="doc-code">Серия</label>
@@ -191,8 +258,13 @@
 							name="doc-code"
 							id="doc-code"
 							maxlength="4"
+							v-model.trim="form.documentCode"
 							placeholder="7777"
 						/>
+						<p
+							v-if="$v.form.documentCode.$dirty && !$v.form.documentCode.isNumber"
+							class="error"
+						>{{errors.isNumber}}</p>
 					</div>
 					<div class="group__item">
 						<label for="doc-number">Номер</label>
@@ -202,8 +274,13 @@
 							name="doc-number"
 							id="doc-number"
 							maxlength="6"
+							v-model.trim="form.documentNumber"
 							placeholder="777777"
 						/>
+						<p
+							v-if="$v.form.documentNumber.$dirty && !$v.form.documentNumber.isNumber"
+							class="error"
+						>{{errors.isNumber}}</p>
 					</div>
 				</div>
 				<div class="group__column">
@@ -214,6 +291,7 @@
 							type="text"
 							name="departament"
 							id="departament"
+							v-model.trim="form.department"
 							placeholder="Отделом УФМС России.."
 						/>
 					</div>
@@ -225,8 +303,17 @@
 							name="date-of-getting"
 							id="date-of-getting"
 							placeholder="дд.мм.гггг"
+							v-model.trim="form.dateOfGetting"
 							maxlength="10"
 						/>
+						<p
+							v-if="$v.form.dateOfGetting.$dirty && !$v.form.dateOfGetting.required"
+							class="error"
+						>{{errors.isRequired}}</p>
+						<p
+							v-if="$v.form.dateOfGetting.$dirty && !$v.form.dateOfGetting.isDate"
+							class="error"
+						>{{errors.wrongFormat}}</p>
 					</div>
 				</div>
 			</div>
@@ -238,8 +325,102 @@
 </template>
 
 <script>
+import { required, minLength } from "vuelidate/lib/validators";
+import { isWord, isNumber, isPhone, isDate } from "@/utils/helpers.js";
 export default {
 	name: "Form",
+	data() {
+		return {
+			form: {
+				name: "",
+				surname: "",
+				patronymic: "",
+				gender: "",
+				birthday: "",
+				phone: "",
+				doctor: "",
+				clientGroup: [],
+				notifications: false,
+				country: "",
+				state: "",
+				city: "",
+				street: "",
+				postCode: "",
+				building: "",
+				document: "",
+				documentNumber: "",
+				documentCode: "",
+				department: "",
+				dateOfGetting: "",
+			},
+			errors: {
+				isRequired: "Обязательное поле!",
+				isWord: "Можно использовать только буквы!",
+				isNumber: "Можно использовать только цифры!",
+				wrongFormat: "Неверный формат!",
+			},
+		};
+	},
+	validations: {
+		form: {
+			name: {
+				required,
+				isWord,
+			},
+			surname: {
+				required,
+				isWord,
+			},
+			patronymic: {
+				isWord,
+			},
+			birthday: {
+				required,
+				isDate,
+			},
+			phone: {
+				required,
+				isPhone,
+			},
+			clientGroup: {
+				required,
+			},
+			country: {
+				isWord,
+			},
+			state: {
+				isWord,
+			},
+			city: {
+				required,
+				isWord,
+			},
+			postCode: {
+				isNumber,
+			},
+			document: {
+				required,
+			},
+			documentCode: {
+				isNumber,
+			},
+			documentNumber: {
+				isNumber,
+			},
+			dateOfGetting: {
+				required,
+				isDate,
+			},
+		},
+	},
+	methods: {
+		submitHandler() {
+			if (this.$v.$invalid) {
+				this.$v.$touch();
+			}
+			this.$emit("success", this.form);
+		},
+	},
 };
 </script>
 
