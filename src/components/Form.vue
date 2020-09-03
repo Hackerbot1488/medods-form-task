@@ -462,14 +462,15 @@ export default {
 		&:first-child
 			margin: 0
 	.form__select
+		width: 300px
 		&_multiple
 			height: auto
 @media (max-width: 500px)
 	.form
 		margin: 0 10px
 		section
-			width: auto
-			margin: 0
+			width: 300px
+			margin: 0 auto
 		.wrap-submit-button
 			padding: 20px 0 0
 	.form__header
@@ -479,9 +480,18 @@ export default {
 		width: auto
 	.group-column
 		width: 100%
+	.submit-button
+		height: 50px
+		padding: 0 30px
 @media (max-width: 360px)
+	.form
+		section
+			margin: 0
+			width: auto
 	.form__header
 		font-size: 25px
-	.form__input, .form__select
-		width: calc(100% - 60px)
+	.form__input,
+		width: calc(100% - 40px)
+	.form__select
+		width: 100%
 </style>
