@@ -90,17 +90,16 @@
 				<div class="group__item">
 					<label for="notifications">SMS - Уведомления</label>
 					<div class="wrap-checkbox">
-						<input type="checkbox" name="notifications" id="notifications" />
+						<label class="checkbox path">
+							<input type="checkbox" id="notifications" />
+							<svg viewBox="0 0 21 21">
+								<path
+									d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"
+								/>
+							</svg>
+						</label>
 						<label for="notifications">Не получать sms-уведомления</label>
 					</div>
-					<label class="checkbox path">
-						<input type="checkbox" id="notifications" />
-						<svg viewBox="0 0 21 21">
-							<path
-								d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"
-							/>
-						</svg>
-					</label>
 				</div>
 			</div>
 		</section>
@@ -373,13 +372,16 @@ export default {
 	--background: #fff
 	--border: #D1D6EE
 	--border-hover: #BBC1E1
-	--border-active: #1E2235
+	--border-active: #0f2027
 	--tick: #fff
+	margin: 0 0 0 4px !important
+	width: 13px
+	height: 13px
 	position: relative
 	input,
 	svg
-		width: 21px
-		height: 21px
+		width: 13px
+		height: 13px
 		display: block
 	input
 		-webkit-appearance: none
@@ -391,7 +393,7 @@ export default {
 		margin: 0
 		padding: 0
 		cursor: pointer
-		border-radius: 4px
+		border-radius: 3px
 		transition: box-shadow .3s
 		box-shadow: inset 0 0 0 var(--s, 1px) var(--b, var(--border))
 		&:hover
@@ -409,8 +411,8 @@ export default {
 		position: absolute
 		top: 0
 		left: 0
-		width: 21px
-		height: 21px
+		width: 13px
+		height: 13px
 		transform: scale(var(--scale, 1)) translateZ(0)
 	&.path
 		input
