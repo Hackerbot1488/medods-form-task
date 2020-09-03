@@ -454,7 +454,8 @@ export default {
 	.form__header
 		width: 400px
 	.group
-		flex-direction: column
+		/** flex-direction: column **/
+		display: block
 		width: 400px
 	.group__column
 		flex: 1
