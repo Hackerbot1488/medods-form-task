@@ -1,16 +1,28 @@
 <template>
-	<div id="app">
-		<Form />
+	<div id="app" :class="{success_visible: success}">
+		<Form v-if="!success" @success="onSuccess" />
+		<Success v-if="success" />
 	</div>
 </template>
 
 <script>
-import Form from "./components/Form.vue";
-
+import Form from "@/components/Form.vue";
+import Success from "@/components/Success.vue";
 export default {
 	name: "App",
+	data() {
+		return {
+			success: false,
+		};
+	},
+	methods: {
+		onSuccess() {
+			this.success = true;
+		},
+	},
 	components: {
 		Form,
+		Success,
 	},
 };
 </script>
@@ -31,4 +43,6 @@ body
   align-items: center
   min-height: 100vh
   padding: 50px 0
+.success_visible
+  min-height: 100% !important
 </style>
