@@ -87,18 +87,20 @@
 				</div>
 			</div>
 			<div class="group">
-				<div class="group__item">
-					<label for="notifications">SMS - Уведомления</label>
-					<div class="wrap-checkbox">
-						<label class="checkbox path">
-							<input type="checkbox" id="notifications" />
-							<svg viewBox="0 0 21 21">
-								<path
-									d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"
-								/>
-							</svg>
-						</label>
-						<label for="notifications">Не получать sms-уведомления</label>
+				<div class="group__column">
+					<div class="group__item">
+						<label for="notifications">SMS - Уведомления</label>
+						<div class="wrap-checkbox">
+							<label class="checkbox path">
+								<input type="checkbox" id="notifications" />
+								<svg viewBox="0 0 21 21">
+									<path
+										d="M5,10.75 L8.5,14.25 L19.4,2.3 C18.8333333,1.43333333 18.0333333,1 17,1 L4,1 C2.35,1 1,2.35 1,4 L1,17 C1,18.65 2.35,20 4,20 L17,20 C18.65,20 20,18.65 20,17 L20,7.99769186"
+									/>
+								</svg>
+							</label>
+							<label for="notifications">Не получать sms-уведомления</label>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -426,10 +428,60 @@ export default {
 			stroke-dasharray: var(--a, 86.12)
 			stroke-dashoffset: var(--o, 86.12)
 			transition: stroke-dasharray .6s, stroke-dashoffset .6s
-@media (max-width: 400px)
-	.form__select_multiple
-		padding: 10px 20px
-		height: auto
-	.form__input
-		width: 320px
+
+@media (max-width: 1144px)
+	.form
+		padding: 20px
+		section, .wrap-submit-button
+			width: 631px
+			margin: 0 auto
+	.group__column
+		flex: 1
+		max-width: 300px
+		&:first-child
+			margin-right: 40px
+@media (max-width: 900px)
+	.form
+		margin: 0 30px
+@media (max-width: 732px)
+	.form
+		section
+			width: 400px
+			margin: 0 auto
+		.wrap-submit-button
+			padding: 20px 20px 20px 0px
+			width: auto
+	.form__header
+		width: 400px
+	.group
+		flex-direction: column
+		width: 400px
+	.group__column
+		flex: 1
+		max-width: 300px
+		&:first-child
+			margin: 0
+	.form__select
+		&_multiple
+			height: auto
+@media (max-width: 500px)
+	.form
+		margin: 0 10px
+		section
+			width: auto
+			margin: 0
+		.wrap-submit-button
+			padding: 20px 0 0
+	.form__header
+		font-size: 30px
+		width: auto
+	.group
+		width: auto
+	.group-column
+		width: 100%
+@media (max-width: 360px)
+	.form__header
+		font-size: 25px
+	.form__input, .form__select
+		width: calc(100% - 60px)
 </style>
