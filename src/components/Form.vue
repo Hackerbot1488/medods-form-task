@@ -37,13 +37,13 @@
 							<label for="custom">Микс</label>
 						</div>
 					</div>
-					<div class="group__item">
+					<!-- <div class="group__item">
 						<label for="notifications">SMS - Уведомления</label>
 						<div class="wrap-checkbox">
 							<input type="checkbox" name="notifications" id="notifications" />
 							<label for="notifications">Не получать sms-уведомления</label>
 						</div>
-					</div>
+					</div>-->
 				</div>
 				<div class="group__column">
 					<div class="group__item">
@@ -83,6 +83,15 @@
 							<option value="problem">Проблемные</option>
 							<option value="oms">ОМС</option>
 						</select>
+					</div>
+				</div>
+			</div>
+			<div class="group">
+				<div class="group__item">
+					<label for="notifications">SMS - Уведомления</label>
+					<div class="wrap-checkbox">
+						<input type="checkbox" name="notifications" id="notifications" />
+						<label for="notifications">Не получать sms-уведомления</label>
 					</div>
 				</div>
 			</div>
