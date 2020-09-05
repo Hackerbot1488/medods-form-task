@@ -31,17 +31,17 @@ export default {
 @font-face
 	font-family: "Oswald"
 	src: url("/fonts/Oswald/Oswald-Regular.eot")
-	src: url("/fonts/Oswald/Oswald-Regular.ttf") format("opentype"),
-		url("/fonts/Oswald/Oswald-Regular.woff2") format("woff2"),
-		url("/fonts/Oswald/Oswald-Regular.svg") format("svg")
+	src: url("/fonts/Oswald/Oswald-Regular.ttf") format("opentype")
+	src: url("/fonts/Oswald/Oswald-Regular.woff2") format("woff2")
+	src: url("/fonts/Oswald/Oswald-Regular.svg") format("svg")
 	font-style: normal
 	font-weight: normal
 @font-face
 	font-family: "Oswald"
 	src: url("/fonts/Oswald/Oswald-Bold.eot")
-	src: url("/fonts/Oswald/Oswald-Bold.ttf") format("opentype"),
-		url("/fonts/Oswald/Oswald-Bold.woff2") format("woff2"),
-		url("/fonts/Oswald/Oswald-Bold.svg") format("svg")
+	src: url("/fonts/Oswald/Oswald-Bold.ttf") format("opentype")
+	src: url("/fonts/Oswald/Oswald-Bold.woff2") format("woff2")
+	src: url("/fonts/Oswald/Oswald-Bold.svg") format("svg")
 	font-style: normal
 	font-weight: bold
 body
