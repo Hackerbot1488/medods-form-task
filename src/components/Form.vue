@@ -417,8 +417,9 @@ export default {
 		submitHandler() {
 			if (this.$v.$invalid) {
 				this.$v.$touch();
+			} else {
+				this.$emit("success", this.form);
 			}
-			this.$emit("success", this.form);
 		},
 	},
 };
