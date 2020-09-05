@@ -16,7 +16,7 @@ export default {
 		};
 	},
 	methods: {
-		onSuccess() {
+		onSuccess(data) {
 			this.success = true;
 		},
 	},
