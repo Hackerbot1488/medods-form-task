@@ -28,21 +28,36 @@ export default {
 </script>
 
 <style lang="sass">
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap")
+@font-face
+	font-family: "Oswald"
+	src: url("/fonts/Oswald/Oswald-Regular.eot")
+	src: url("/fonts/Oswald/Oswald-Regular.ttf") format("opentype"),
+		url("/fonts/Oswald/Oswald-Regular.woff2") format("woff2"),
+		url("/fonts/Oswald/Oswald-Regular.svg") format("svg")
+	font-style: normal
+	font-weight: normal
+@font-face
+	font-family: "Oswald"
+	src: url("/fonts/Oswald/Oswald-Bold.eot")
+	src: url("/fonts/Oswald/Oswald-Bold.ttf") format("opentype"),
+		url("/fonts/Oswald/Oswald-Bold.woff2") format("woff2"),
+		url("/fonts/Oswald/Oswald-Bold.svg") format("svg")
+	font-style: normal
+	font-weight: bold
 body
-  font-family: "Oswald", sans-serif
-  margin: 0
-  padding: 0
-  min-height: 100vh
-  background: #0f2027
+	font-family: "Oswald", sans-serif
+	margin: 0
+	padding: 0
+	min-height: 100vh
+	background: #0f2027
 
 #app
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  display: flex
-  align-items: center
-  min-height: 100vh
-  padding: 50px 0
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	display: flex
+	align-items: center
+	min-height: 100vh
+	padding: 50px 0
 .success_visible
-  min-height: 100% !important
+	min-height: 100% !important
 </style>
